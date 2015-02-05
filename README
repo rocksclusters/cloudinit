@@ -15,3 +15,6 @@ interface.
 
 The private interface problems have not been addressed yet.
 
+This roll should be integrated in the ec2 roll so that
+all the EC2 instances run cloudinit
+

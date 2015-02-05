@@ -60,7 +60,7 @@
 #
 
 . /etc/init.d/functions
-. /etc/profile.d/sge-binaries.sh
+test -f /etc/profile.d/sge-binaries.sh && . /etc/profile.d/sge-binaries.sh
 
 logfile=/var/log/rocks_dhcp.log
 
