@@ -52,6 +52,12 @@ cd /etc/cloud
 patch -p0 &lt; /tmp/patch_cloud
 
 
+<!-- change network file to not have hostname of gateway -->
+<file name="/etc/sysconfig/network">
+NETWORKING=yes
+</file>
+
+
 # let's set the network to dhcp if it is not already the case
 /opt/rocks/bin/rocks set host interface options &Kickstart_PrivateHostname; &Kickstart_PublicInterface; dhcp
 /opt/rocks/bin/rocks report host interface &Kickstart_PrivateHostname; | /opt/rocks/bin/rocks report script | bash
