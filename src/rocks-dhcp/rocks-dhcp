@@ -147,12 +147,26 @@ function reconfigFE() {
 
 }
 
+function rewriteNetwork() {
+	x=$(curl -s -f http://169.254.169.254/latest/meta-data/local-ipv4 2> /dev/null)
+	if [ "$?" == "7" ] ; then
+		echo ""
+		echo "INFO: not EC2 host, no action needed"
+		return
+	else
+		nfile=/etc/sysconfig/network
+		echo "INFO: comment hostname and gateway in $nfile"
+		sed -i "s/^HOSTNAME/#HOSTNAME/" $nfile
+		sed -i "s/^GATEWAY/#GATEWAY/" $nfile
+	fi
+}
 
 
 case "$1" in
     start)
         echo "Starting rocks-dhcp...."
 	reconfigFE
+	rewriteNetwork
         RETVAL=$?
         ;;
     stop)
