@@ -159,6 +159,7 @@ function rewriteNetwork() {
 		sed -i "s/^HOSTNAME/#HOSTNAME/" $nfile
 		sed -i "s/^GATEWAY/#GATEWAY/" $nfile
 	fi
+	/opt/rocks/bin/rocks run reconfigure clear=1
 }
 
 
